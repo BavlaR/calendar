@@ -1,33 +1,25 @@
-import React, { Component } from 'react';
-
+import React, { useState } from 'react';
+import './calendar.scss';
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import events from '../../gateway/events';
 
-import './calendar.scss';
+const Calendar = p => {
+   const [userEvents, setEvents] = useState(events);
+   const { weekDates } = p;
 
-class Calendar extends Component {
-
-    state = {
-        events,
-    }
-
-    render() {
-        const { weekDates } = this.props;
-
-        return (
-            <section className="calendar">
-                <Navigation weekDates={weekDates} />
-                <div className="calendar__body">
-                    <div className="calendar__week-container">
-                        <Sidebar />
-                        <Week weekDates={weekDates} events={this.state.events} />
-                    </div>
-                </div>
-            </section>
-        )
-    }
-}
+   return (
+      <section className="calendar">
+         <Navigation weekDates={weekDates} />
+         <div className="calendar__body">
+            <div className="calendar__week-container">
+               <Sidebar />
+               <Week weekDates={weekDates} events={userEvents} />
+            </div>
+         </div>
+      </section>
+   );
+};
 
 export default Calendar;
