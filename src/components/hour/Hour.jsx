@@ -1,11 +1,12 @@
 import React from 'react';
+import './hour.scss';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 import Event from '../event/Event';
+import PropTypes from 'prop-types';
 
-const Hour = ({ dataHour, hourEvents }) => {
+const Hour = ({ dataHour, hourEvents, deleteEvent }) => {
    return (
       <div className="calendar__time-slot" data-time={dataHour + 1}>
-         {/* if no events in the current hour nothing will render here */}
          {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
             const eventStart = `${dateFrom.getHours()}:${formatMins(dateFrom.getMinutes())}`;
             const eventEnd = `${dateTo.getHours()}:${formatMins(dateTo.getMinutes())}`;
@@ -13,11 +14,12 @@ const Hour = ({ dataHour, hourEvents }) => {
             return (
                <Event
                   key={id}
-                  //calculating event height = duration of event in minutes
+                  id={id}
                   height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
                   marginTop={dateFrom.getMinutes()}
                   time={`${eventStart} - ${eventEnd}`}
                   title={title}
+                  deleteEvent={deleteEvent}
                />
             );
          })}
@@ -26,3 +28,9 @@ const Hour = ({ dataHour, hourEvents }) => {
 };
 
 export default Hour;
+
+Hour.propTypes = {
+   dataHour: PropTypes.number.isRequired,
+   hourEvents: PropTypes.array.isRequired,
+   deleteEvent: PropTypes.func.isRequired,
+};

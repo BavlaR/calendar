@@ -1,0 +1,13 @@
+.calendar {
+   &__day {
+      position: relative;
+      flex: 1;
+      border-left: 1px solid #ff8c00;
+   }
+}
+.red-line {
+   position: absolute;
+   width: 100%;
+   border-top: 2px solid red;
+   z-index: 5;
+}

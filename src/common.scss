@@ -12,7 +12,6 @@
       transform: scale(1.2, 1.2);
    }
 }
-
 .icon-button {
    outline: none;
    border: none;
@@ -23,42 +22,4 @@
    &:hover {
       transform: scale(1.5, 1.5);
    }
-}
-
-.modal {
-   position: fixed;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-
-   &__content {
-      background: #fff;
-      padding: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-   }
-}
-
-.overlay {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100vw;
-   height: 100vh;
-   background-color: #cccccc45;
-   z-index: 10;
-}
-
-.popup {
-   &__content {
-      position: absolute;
-      background: #fff;
-      padding: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-   }
-}
-
-.hidden {
-   display: none;
 }
