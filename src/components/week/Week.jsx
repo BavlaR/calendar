@@ -3,13 +3,13 @@ import './week.scss';
 import Day from '../day/Day';
 import PropTypes from 'prop-types';
 
-const Week = ({ weekDates, events, deleteEvent }) => {
+const Week = p => {
    return (
       <div className="calendar__week">
-         {weekDates.map(dayStart => {
+         {p.weekDates.map(dayStart => {
             const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
 
-            const dayEvents = events.filter(
+            const dayEvents = p.events.filter(
                event => event.dateFrom > dayStart && event.dateTo < dayEnd,
             );
 
@@ -19,7 +19,7 @@ const Week = ({ weekDates, events, deleteEvent }) => {
                   dataDay={dayStart.getDate()}
                   dayStart={dayStart}
                   dayEvents={dayEvents}
-                  deleteEvent={deleteEvent}
+                  deleteEvent={p.deleteEvent}
                />
             );
          })}

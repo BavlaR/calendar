@@ -1,9 +1,11 @@
 import React from 'react';
 import './header.scss';
-import { months } from '../../utils/dateUtils.js';
+import { months } from '../../utils/dateUtils';
 import PropTypes from 'prop-types';
 
-const Header = ({ weekDates, weekFuture, weekPast, weekToday, modalToggle }) => {
+const Header = p => {
+   const { weekDates } = p;
+
    const firstMonth = weekDates[0].getMonth();
    const firstMonthToShow = months[firstMonth];
 
@@ -12,17 +14,17 @@ const Header = ({ weekDates, weekFuture, weekPast, weekToday, modalToggle }) => 
 
    return (
       <header className="header">
-         <button className="button create-event-btn" onClick={modalToggle}>
+         <button className="button create-event-btn" onClick={p.modalToggle}>
             <i className="fas fa-plus create-event-btn__icon"></i>Create
          </button>
          <div className="navigation">
-            <button className="navigation__today-btn button" onClick={weekToday}>
+            <button className="navigation__today-btn button" onClick={p.weekToday}>
                Today
             </button>
-            <button className="icon-button navigation__nav-icon" onClick={weekPast}>
+            <button className="icon-button navigation__nav-icon" onClick={p.weekPast}>
                <i className="fas fa-chevron-left"></i>
             </button>
-            <button className="icon-button navigation__nav-icon" onClick={weekFuture}>
+            <button className="icon-button navigation__nav-icon" onClick={p.weekFuture}>
                <i className="fas fa-chevron-right"></i>
             </button>
             <span className="navigation__displayed-month">

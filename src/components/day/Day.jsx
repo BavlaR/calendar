@@ -3,7 +3,9 @@ import './day.scss';
 import Hour from '../hour/Hour';
 import PropTypes from 'prop-types';
 
-const Day = ({ dataDay, dayEvents, dayStart, deleteEvent }) => {
+const Day = p => {
+   const { dataDay, dayStart } = p;
+
    const [redLineTop, setRedLineTop] = useState(
       new Date().getHours() * 60 + new Date().getMinutes(),
    );
@@ -28,14 +30,14 @@ const Day = ({ dataDay, dayEvents, dayStart, deleteEvent }) => {
       <>
          <div className="calendar__day" data-day={dataDay}>
             {hours.map(hour => {
-               const hourEvents = dayEvents.filter(event => event.dateFrom.getHours() === hour);
+               const hourEvents = p.dayEvents.filter(event => event.dateFrom.getHours() === hour);
 
                return (
                   <Hour
                      key={dataDay + hour}
                      dataHour={hour}
                      hourEvents={hourEvents}
-                     deleteEvent={deleteEvent}
+                     deleteEvent={p.deleteEvent}
                   />
                );
             })}

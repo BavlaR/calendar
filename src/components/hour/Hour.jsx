@@ -1,13 +1,13 @@
 import React from 'react';
 import './hour.scss';
-import { formatMins } from '../../../src/utils/dateUtils.js';
+import { formatMins } from '../../utils/dateUtils';
 import Event from '../event/Event';
 import PropTypes from 'prop-types';
 
-const Hour = ({ dataHour, hourEvents, deleteEvent }) => {
+const Hour = p => {
    return (
-      <div className="calendar__time-slot" data-time={dataHour + 1}>
-         {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
+      <div className="calendar__time-slot" data-time={p.dataHour + 1}>
+         {p.hourEvents.map(({ id, dateFrom, dateTo, title }) => {
             const eventStart = `${dateFrom.getHours()}:${formatMins(dateFrom.getMinutes())}`;
             const eventEnd = `${dateTo.getHours()}:${formatMins(dateTo.getMinutes())}`;
 
@@ -19,7 +19,7 @@ const Hour = ({ dataHour, hourEvents, deleteEvent }) => {
                   marginTop={dateFrom.getMinutes()}
                   time={`${eventStart} - ${eventEnd}`}
                   title={title}
-                  deleteEvent={deleteEvent}
+                  deleteEvent={p.deleteEvent}
                />
             );
          })}

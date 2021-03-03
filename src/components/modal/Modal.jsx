@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './modal.scss';
 import PropTypes from 'prop-types';
 
-const Modal = ({ modalToggle, submit }) => {
+const Modal = p => {
+   const { modalToggle } = p;
+
    const [formData, setFormData] = useState({
       title: '',
       description: '',
@@ -29,7 +31,7 @@ const Modal = ({ modalToggle, submit }) => {
                   className="event-form"
                   onSubmit={e => {
                      e.preventDefault();
-                     submit(formData);
+                     p.submit(formData);
                      modalToggle();
                      setFormData({
                         title: '',
